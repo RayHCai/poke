@@ -1,0 +1,9 @@
+{
+  "name": "pokedate-app-polyfill",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "react-native-url-polyfill": "^2.0.0",
+    "expo-image-picker": "~14.7.1"
+  }
+}

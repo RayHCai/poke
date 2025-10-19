@@ -1,0 +1,48 @@
+{
+    "expo": {
+        "name": "PokeDate",
+        "slug": "pokedate",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/FlanaganRay.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/FlanaganRay.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.pokedate.app",
+            "infoPlist": {
+                "NSLocationWhenInUseUsageDescription": "PokeDate needs your location to show you nearby users and enable matching.",
+                "NSCameraUsageDescription": "PokeDate needs access to your camera to take a profile selfie during signup."
+            }
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            },
+            "package": "com.pokedate.app",
+            "permissions": [
+                "ACCESS_FINE_LOCATION",
+                "ACCESS_COARSE_LOCATION",
+                "CAMERA"
+            ]
+        },
+        "web": {
+            "favicon": "./assets/FlanaganRay.png"
+        },
+        "plugins": [
+            "expo-location",
+            [
+                "expo-camera",
+                {
+                    "cameraPermission": "PokeDate needs access to your camera to take a profile selfie during signup."
+                }
+            ]
+        ]
+    }
+}
