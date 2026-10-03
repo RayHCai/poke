@@ -7,7 +7,6 @@ import { View, Text, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SelfieCapture from '../../components/SelfieCapture';
 import Button from '../../components/Button';
-import { supabase } from '../../lib/supabase';
 
 interface SelfieOnboardingScreenProps {
   userId: string;
@@ -21,7 +20,7 @@ export default function SelfieOnboardingScreen({
   const [showCamera, setShowCamera] = useState(false);
   const [isSkipping, setIsSkipping] = useState(false);
 
-  const handleSelfieUploaded = (rating: number) => {
+  const handleSelfieUploaded = (_rating: number) => {
     Alert.alert(
       'Success!',
       'Your profile is now complete. Get ready to meet amazing people nearby!',

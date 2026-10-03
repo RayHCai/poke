@@ -57,7 +57,7 @@ export default function NotificationsScreen({
         onMutate: ({ throwId }) => {
             setProcessingThrowId(throwId);
         },
-        onSuccess: (data, variables) => {
+        onSuccess: (data) => {
             // Refresh both lists
             queryClient.invalidateQueries({ queryKey: ['incoming-throws'] });
             queryClient.invalidateQueries({ queryKey: ['throw-history'] });

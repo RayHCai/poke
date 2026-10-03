@@ -278,7 +278,7 @@ export default function PersonDetailScreen({
     const showThrowConfirmation = () => {
         Alert.alert(
             'Throw Pokeball?',
-            `Throw a pokeball at ${profile?.display_name}? If they accept, you\'ll match!`,
+            `Throw a pokeball at ${profile?.display_name}? If they accept, you'll match!`,
             [
                 { text: 'Cancel', style: 'cancel' },
                 {

@@ -115,7 +115,7 @@ export default function HomeScreen({
     const buzzerTargetUser = nearbyUsers.find((u) => u.user_id === buzzerTargetUserId);
 
     // Initialize directional buzzer
-    const buzzerState = useDirectionalBuzzer({
+    useDirectionalBuzzer({
         enabled: isBuzzerEnabled,
         targetUser: buzzerTargetUser || null,
         currentLocation,

@@ -55,7 +55,7 @@ export function useLocation() {
       setCurrentLocation({ lat: latitude, lng: longitude });
 
       // Update server
-      const res = await apiClient.updateLocation(latitude, longitude, accuracy || undefined);
+      await apiClient.updateLocation(latitude, longitude, accuracy || undefined);
 
       console.info('Location updated:', { lat: latitude, lng: longitude });
     } catch (err) {

@@ -13,4 +13,11 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
   },
+  overrides: [
+    {
+      // Tooling config files (babel, eslint) are CommonJS modules run by Node
+      files: ['*.js'],
+      env: { node: true },
+    },
+  ],
 };
