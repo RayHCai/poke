@@ -3,8 +3,6 @@ node_modules/
 .pnp
 .pnp.js
 
-.claude/
-
 # Expo
 .expo/
 .expo-shared/
@@ -12,17 +10,25 @@ dist/
 web-build/
 
 # Native
+/ios/
+/android/
 *.orig.*
 *.jks
 *.p8
 *.p12
 *.key
 *.mobileprovision
-*.orig.*
 .DS_Store
 
 # Metro
 .metro-health-check*
+
+# Build output
+build/
+out/
+
+# Test / coverage
+coverage/
 
 # Debug
 npm-debug.*
@@ -31,7 +37,8 @@ yarn-error.*
 
 # Local env files
 .env
-.env*.local
+.env.*
+!.env.example
 
 # typescript
 *.tsbuildinfo
@@ -47,3 +54,8 @@ server/build/
 # Logs
 logs
 *.log
+
+# AI tool files (any depth)
+.claude/
+CLAUDE.md
+AGENTS.md
