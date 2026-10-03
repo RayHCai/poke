@@ -15,7 +15,18 @@ import PersonDetailScreen from '../features/person/PersonDetailScreen';
 import MatchesScreen from '../features/match/MatchesScreen';
 import NotificationsScreen from '../features/notifications/NotificationsScreen';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+    Auth: undefined;
+    Home: undefined;
+    Profile: undefined;
+    EditProfile: undefined;
+    Preferences: undefined;
+    PersonDetail: { userId: string };
+    Matches: undefined;
+    Notifications: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
     const [session, setSession] = useState<Session | null>(null);
@@ -79,7 +90,7 @@ export default function AppNavigator() {
                         />
                         <Stack.Screen
                             name="PersonDetail"
-                            component={(PersonDetailScreen as any)}
+                            component={PersonDetailScreen}
                             options={{
                                 headerShown: true,
                                 title: 'User Profile',
