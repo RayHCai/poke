@@ -11,6 +11,8 @@ import { io } from '../sockets';
 const router = Router();
 
 const THROW_COOLDOWN_MS = 10000; // 10 seconds
+// MVP behavior: an accepted throw creates a match even without a reciprocal throw
+const AUTO_MATCH_ON_HIT: boolean = true;
 const MAX_THROW_DISTANCE_KM = 10; // Maximum throw distance
 
 /**
@@ -220,16 +222,6 @@ router.get('/incoming', authMiddleware, async (req: AuthRequest, res) => {
             return;
         }
 
-        const relevantUserIds = Array.from(
-            new Set(
-                throwsData
-                    .map((t) =>
-                        t.thrower_id === userId ? t.target_id : t.thrower_id
-                    )
-                    .filter((id): id is string => Boolean(id) && id !== userId)
-            )
-        );
-
         const throwerIds = throws?.map((t) => t.thrower_id) || [];
         const { data: profiles, error: profilesError } = await supabase
             .from('profiles')
@@ -245,7 +237,7 @@ router.get('/incoming', authMiddleware, async (req: AuthRequest, res) => {
 
         // Transform response
         const incomingThrows =
-            throws?.map((t: any) => {
+            throws?.map((t) => {
                 const profile = profileMap.get(t.thrower_id);
                 return {
                     throwId: t.id,
@@ -327,7 +319,7 @@ router.get('/history', authMiddleware, async (req: AuthRequest, res) => {
 
         // Transform response
         const historyThrows =
-            throws?.map((t: any) => {
+            throws?.map((t) => {
                 const isTarget = t.target_id === userId;
                 const relevantUserId = !isTarget ? t.target_id : t.thrower_id;
                 const profile = profileMap.get(relevantUserId);
@@ -421,8 +413,7 @@ router.post('/resolve', authMiddleware, async (req: AuthRequest, res) => {
                 .single();
 
             // Create match if reciprocal or auto-match
-            if (reciprocalThrow || true) {
-                // Auto-match for MVP
+            if (reciprocalThrow || AUTO_MATCH_ON_HIT) {
                 const [u1, u2] = [throwData.thrower_id, userId].sort();
 
                 const { data: matchData, error: matchError } = await supabase
